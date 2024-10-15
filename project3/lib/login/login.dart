@@ -35,7 +35,7 @@ class login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'login',
+      title: 'Login',
       theme: ThemeData(
         primaryColor: Colors.white,
         primarySwatch: customSwatch,
@@ -97,7 +97,7 @@ class _MyHomePageState extends State<Login> {
                             color: Colors.black,
                           ),
                         ),
-                        SizedBox(height: 60.0), 
+                        SizedBox(height: 60.0),
                         Row(
                           children: [
                             Expanded(
@@ -136,7 +136,7 @@ class _MyHomePageState extends State<Login> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 60.0), 
+                        SizedBox(height: 60.0),
                         ElevatedButton(
                           onPressed: () {
                             // 회원가입 페이지로 이동

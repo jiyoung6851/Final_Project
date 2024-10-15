@@ -70,6 +70,7 @@ class _Signup_emailState extends State<Signup_email> {
         email: email,
         emailRedirectTo: 'flowertalk://signup_email',
       );
+      
 
       setState(() {
         _isCodeSent = true; // 인증 코드가 발송됨

@@ -124,6 +124,12 @@ class _DiaryPageState extends State<DiaryPage> {
   }
 
   Future<void> _postDiary() async {
+    // 일기 내용이 비어있는지 확인
+    if (_textController.text.trim().isEmpty) {
+      _showEmptyDiaryAlert();
+      return;
+    }
+
     // SecureStorage에서 user_id를 가져옴
     String? userID = await secureStorage.read(key: 'user_id');
 
@@ -166,7 +172,7 @@ class _DiaryPageState extends State<DiaryPage> {
       if (_selectedImage != null) {
         try {
           final pickedImageBytes =
-              await _selectedImage!.readAsBytes(); // 선택된 이미지를 바이트 배열로 읽기
+          await _selectedImage!.readAsBytes(); // 선택된 이미지를 바이트 배열로 읽기
           String fileName = '${DateTime.now().millisecondsSinceEpoch}.png';
           await _uploadImage(pickedImageBytes, fileName);
           imageUrl = _imageUrl;
@@ -225,7 +231,28 @@ class _DiaryPageState extends State<DiaryPage> {
     }
   }
 
-    void _showCompletionDialog(Map<String, dynamic> insertedDiary) {
+  void _showEmptyDiaryAlert() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('게시 불가'),
+          content: const Text('빈 일기는 게시할 수 없습니다.'),
+          actions: [
+            TextButton(
+              child: const Text('확인'),
+              onPressed: () {
+                Navigator.of(context).pop(); // 알림 창 닫기
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+  void _showCompletionDialog(Map<String, dynamic> insertedDiary) {
     showDialog(
       context: context,
       builder: (BuildContext context) {

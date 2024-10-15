@@ -95,6 +95,7 @@ class _MainState extends State<Main> {
     return Scaffold(
       backgroundColor: Colors.white, // 배경을 흰색으로 설정
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white, // 배경을 흰색으로 설정
         title: GestureDetector(
           onTap: () {
